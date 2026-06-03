@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="InterPayCom — Global Payment Gateway. Accept payments from 190+ countries via PayPal."/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="theme-color" content="#0070f3"/>
+<title>InterPayCom — Global Payment Gateway</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230070f3'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='white' stroke-width='2'/%3E%3Cellipse cx='16' cy='16' rx='4.5' ry='9' fill='none' stroke='white' stroke-width='1.5'/%3E%3Cline x1='7' y1='16' x2='25' y2='16' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="bg-shapes">
+  <div class="bg-shape bs1"></div>
+  <div class="bg-shape bs2"></div>
+  <div class="bg-shape bs3"></div>
+</div>
+<div class="bg-grid"></div>
+
+<div id="app">
+
+<!-- ═══════ LOGIN ═══════ -->
+<div id="scr-login" class="screen">
+  <div class="login-wrap">
+    <div class="login-brand">
+      <div class="lb-inner">
+        <div class="lb-logo">
+          <div class="lb-logo-icon">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10" fill="none" stroke="white" stroke-width="2.5"/><ellipse cx="16" cy="16" rx="5" ry="10" fill="none" stroke="white" stroke-width="1.8"/><line x1="6" y1="16" x2="26" y2="16" stroke="white" stroke-width="1.8"/><line x1="9" y1="10" x2="23" y2="10" stroke="white" stroke-width="1.2"/><line x1="9" y1="22" x2="23" y2="22" stroke="white" stroke-width="1.2"/></svg>
+          </div>
+          <div>
+            <div class="lb-name">InterPay<em>Com</em></div>
+            <div class="lb-sub">Global Payment Gateway</div>
+          </div>
+        </div>
+        <div class="lb-divider"></div>
+        <p class="lb-tagline">Accept payments from<br/>anywhere in the world</p>
+        <p class="lb-desc">Professional payment gateway for businesses receiving international payments in any currency from clients worldwide.</p>
+        <div class="lb-stats">
+          <div class="lb-stat"><div class="lb-stat-val">190+</div><div class="lb-stat-lbl">Countries</div></div>
+          <div class="lb-stat"><div class="lb-stat-val">50+</div><div class="lb-stat-lbl">Currencies</div></div>
+          <div class="lb-stat"><div class="lb-stat-val">24/7</div><div class="lb-stat-lbl">Available</div></div>
+        </div>
+        <div class="lb-methods">
+          <div class="lb-method"><i class="ti ti-brand-paypal" aria-hidden="true"></i> PayPal</div>
+          <div class="lb-method"><i class="ti ti-credit-card" aria-hidden="true"></i> Cards</div>
+          <div class="lb-method"><i class="ti ti-brand-google" aria-hidden="true"></i> Google Pay</div>
+          <div class="lb-method"><i class="ti ti-brand-apple" aria-hidden="true"></i> Apple Pay</div>
+        </div>
+      </div>
+      <div class="lb-bottom">
+        <div class="lb-sec"><i class="ti ti-shield-lock" aria-hidden="true"></i> 256-bit SSL · PCI DSS · Secure</div>
+        <div class="lb-chips">
+          <span class="lb-chip hi">PayPal</span>
+          <span class="lb-chip">Visa</span>
+          <span class="lb-chip">Mastercard</span>
+          <span class="lb-chip">Amex</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-form">
+      <div class="lf-eyebrow"><i class="ti ti-shield-lock" style="font-size:11px" aria-hidden="true"></i> Admin Access</div>
+      <h1 class="lf-title">Welcome back</h1>
+      <p class="lf-sub">Sign in to your InterPayCom payment dashboard.</p>
+      <div class="lf-field">
+        <label class="lf-label" for="lid">Login ID</label>
+        <div class="lf-input-wrap">
+          <input class="lf-input" id="lid" type="text" placeholder="Enter your login ID" autocomplete="username"/>
+          <i class="ti ti-user lf-icon-r" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="lf-field">
+        <label class="lf-label" for="lpw">Password</label>
+        <div class="lf-input-wrap">
+          <input class="lf-input" id="lpw" type="password" placeholder="Enter your password" autocomplete="current-password"/>
+          <button class="lf-eye" type="button" onclick="togglePw()" aria-label="Toggle password"><i class="ti ti-eye" id="pw-eye"></i></button>
+        </div>
+      </div>
+      <div class="lf-err" id="lf-err" role="alert"></div>
+      <button class="lf-btn" id="lf-btn" onclick="doLogin()">
+        <span id="lf-btntxt">Access Gateway</span>
+        <span class="lf-spin" id="lf-spin"></span>
+        <i class="ti ti-arrow-right" id="lf-icon" aria-hidden="true"></i>
+      </button>
+      <div class="lf-divider">powered by</div>
+      <div class="lf-paypal-badge">
+        <svg height="22" viewBox="0 0 100 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="PayPal">
+          <text x="0" y="20" font-family="Arial" font-weight="800" font-size="22" fill="#003087">Pay</text>
+          <text x="38" y="20" font-family="Arial" font-weight="800" font-size="22" fill="#009CDE">Pal</text>
+        </svg>
+        <span style="font-size:12px;color:var(--t3)">Secure Payment Processing</span>
+      </div>
+      <p class="lf-foot">Unauthorised access is strictly prohibited.<br/>All sessions are encrypted and monitored.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ MAIN SITE ═══════ -->
+<div id="scr-main" class="screen">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10" fill="none" stroke="white" stroke-width="2.5"/><ellipse cx="16" cy="16" rx="5" ry="10" fill="none" stroke="white" stroke-width="1.8"/><line x1="6" y1="16" x2="26" y2="16" stroke="white" stroke-width="1.8"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">InterPay<em>Com</em></div>
+          <div class="brand-sub">Global Payment Gateway</div>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="hbadge"><i class="ti ti-shield-check" aria-hidden="true"></i> SSL Secured</span>
+        <span class="hbadge"><i class="ti ti-world" aria-hidden="true"></i> 190+ Countries</span>
+        <span class="hbadge"><i class="ti ti-brand-paypal" aria-hidden="true"></i> PayPal Powered</span>
+      </div>
+      <button class="logout-btn" onclick="doLogout()"><i class="ti ti-logout" aria-hidden="true"></i> Logout</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow"><span></span> Live · Secure · Instant</div>
+        <h1 class="hero-title">Global payments,<br/><span class="grad">zero friction</span></h1>
+        <p class="hero-desc">Accept payments from clients in 190+ countries in their local currency. Real-time settlements via PayPal — the world's most trusted payment platform.</p>
+        <div class="hero-features">
+          <div class="hf-row"><div class="hf-icon"><i class="ti ti-bolt" aria-hidden="true"></i></div> Instant PayPal settlement to your account</div>
+          <div class="hf-row"><div class="hf-icon"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div> 50+ currencies with live exchange rates</div>
+          <div class="hf-row"><div class="hf-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div> PCI DSS Level 1 — bank-grade security</div>
+          <div class="hf-row"><div class="hf-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div> Visa, Mastercard, Amex, Google Pay, Apple Pay</div>
+        </div>
+        <div class="hero-trust">
+          <div class="ht-badge"><i class="ti ti-lock" aria-hidden="true"></i> 256-bit SSL</div>
+          <div class="ht-badge"><i class="ti ti-certificate" aria-hidden="true"></i> PCI DSS</div>
+          <div class="ht-badge"><i class="ti ti-eye-off" aria-hidden="true"></i> No card stored</div>
+        </div>
+      </div>
+
+      <!-- PAYMENT CARD -->
+      <div class="pay-card-wrap">
+        <div class="pay-card-glow"></div>
+        <div class="pay-card" id="pay-card">
+          <div class="pay-card-top">
+            <div class="pct-pp-logo">
+              <svg height="18" viewBox="0 0 80 22" fill="none" aria-label="PayPal">
+                <text x="0" y="17" font-family="Arial" font-weight="800" font-size="18" fill="white" opacity=".9">Pay</text>
+                <text x="30" y="17" font-family="Arial" font-weight="800" font-size="18" fill="#66c8ff">Pal</text>
+              </svg>
+              <span style="font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase">Checkout</span>
+            </div>
+            <div class="pct-title">Complete Your Payment</div>
+            <div class="pct-secure"><i class="ti ti-shield-check" aria-hidden="true"></i> Secured by PayPal · No card data stored</div>
+          </div>
+
+          <div class="pay-steps">
+            <!-- Step 1 -->
+            <div class="pay-step">
+              <div class="step-header"><div class="step-num">1</div><div class="step-title">Amount &amp; Currency</div></div>
+              <div class="ca-row">
+                <div class="curr-wrap">
+                  <div class="curr-btn" id="curr-btn" onclick="openCurr()" role="button" tabindex="0" aria-label="Select currency">
+                    <span id="curr-flag">🇺🇸</span><span id="curr-code">USD</span>
+                    <i class="ti ti-chevron-down" id="curr-chev" aria-hidden="true"></i>
+                  </div>
+                  <div class="curr-dropdown" id="curr-dd" role="listbox">
+                    <div class="curr-search-row">
+                      <i class="ti ti-search" aria-hidden="true"></i>
+                      <input class="curr-search" id="curr-search" type="text" placeholder="Search currency…" oninput="filterCurr(this.value)" aria-label="Search currencies"/>
+                    </div>
+                    <div class="curr-section-lbl">Popular</div>
+                    <div class="curr-list" id="curr-list"></div>
+                  </div>
+                </div>
+                <div class="amt-wrap">
+                  <span class="amt-sym" id="amt-sym">$</span>
+                  <input class="amt-input" id="amt-input" type="number" min="1" step="0.01" placeholder="0.00" oninput="onAmountChange()" aria-label="Enter amount"/>
+                </div>
+              </div>
+              <div class="inr-equiv" id="inr-equiv" aria-live="polite"></div>
+              <div id="pp-curr-note" style="display:none;font-size:11px;color:var(--t3);margin-top:6px;align-items:center;gap:5px;"><i class="ti ti-info-circle" style="font-size:13px" aria-hidden="true"></i> PayPal will process this in USD equivalent</div>
+              <div class="quick-row">
+                <button class="qbtn" onclick="setQuick(50)">0</button>
+                <button class="qbtn" onclick="setQuick(100)">00</button>
+                <button class="qbtn" onclick="setQuick(250)">50</button>
+                <button class="qbtn" onclick="setQuick(500)">00</button>
+                <button class="qbtn" onclick="setQuick(1000)">,000</button>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="pay-step">
+              <div class="step-header"><div class="step-num">2</div><div class="step-title">Your Details</div></div>
+              <div class="det-grid">
+                <div class="det-field"><label class="det-label" for="payer-name">Full Name</label><input class="det-input" id="payer-name" type="text" placeholder="John Smith" autocomplete="name"/></div>
+                <div class="det-field"><label class="det-label" for="payer-email">Email Address</label><input class="det-input" id="payer-email" type="email" placeholder="john@email.com" autocomplete="email"/></div>
+              </div>
+              <div class="det-field" style="margin-top:10px">
+                <label class="det-label" for="payer-desc">Description <span style="color:var(--t4)">(Optional)</span></label>
+                <input class="det-input" id="payer-desc" type="text" placeholder="e.g. Invoice #001, Project payment" style="width:100%"/>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="pay-step">
+              <div class="step-header"><div class="step-num">3</div><div class="step-title">Pay with PayPal</div></div>
+              <div class="pp-section">
+                <div class="pp-loading" id="pp-loading"><div class="mini-spin"></div><span>Loading PayPal…</span></div>
+                <div id="pp-buttons"></div>
+              </div>
+              <p class="pp-note"><i class="ti ti-shield-check" aria-hidden="true"></i> You'll be redirected to PayPal's secure checkout</p>
+            </div>
+          </div>
+
+          <div style="padding:0 24px 16px">
+            <div class="order-summary">
+              <div class="os-row"><span>Amount</span><span id="os-amount">—</span></div>
+              <div class="os-row"><span>Currency</span><span id="os-curr">—</span></div>
+              <div class="os-row os-total"><span>Total</span><span id="os-total">—</span></div>
+              <div id="os-pp-amt" style="display:none;font-size:11px;color:var(--t3);margin-top:6px;text-align:right"></div>
+            </div>
+          </div>
+
+          <div style="padding:0 24px"><div id="pay-msg" class="pay-msg hidden"></div></div>
+
+          <div class="security-row">
+            <span><i class="ti ti-lock" aria-hidden="true"></i> 256-bit SSL</span>
+            <span><i class="ti ti-shield-check" aria-hidden="true"></i> PCI DSS</span>
+            <span><i class="ti ti-eye-off" aria-hidden="true"></i> No card stored</span>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="pay-card success-card hidden" id="success-card">
+          <div class="success-anim"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+          <h2 class="success-title">Payment Successful!</h2>
+          <p class="success-sub">Your payment has been received and processed.</p>
+          <div class="success-details" id="success-details"></div>
+          <button class="success-new-btn" onclick="resetPayment()"><i class="ti ti-refresh" style="font-size:14px" aria-hidden="true"></i> Make Another Payment</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="section-inner">
+      <div class="section-eyebrow"><i class="ti ti-sparkles" aria-hidden="true"></i> Why InterPayCom</div>
+      <h2 class="section-title">Built for global business</h2>
+      <p class="section-sub">Everything you need to accept international payments professionally, securely, and instantly.</p>
+      <div class="features-grid">
+        <div class="feat-card"><div class="feat-icon"><i class="ti ti-world" aria-hidden="true"></i></div><div class="feat-title">190+ Countries</div><p class="feat-desc">Clients pay from anywhere on the planet. No geographic restrictions or blocked regions.</p></div>
+        <div class="feat-card"><div class="feat-icon"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div><div class="feat-title">50+ Currencies</div><p class="feat-desc">Live exchange rates updated daily. Clients pay in their local currency.</p></div>
+        <div class="feat-card"><div class="feat-icon"><i class="ti ti-bolt" aria-hidden="true"></i></div><div class="feat-title">Instant Settlement</div><p class="feat-desc">Payments settle directly to your PayPal business account in real time.</p></div>
+        <div class="feat-card"><div class="feat-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div><div class="feat-title">Bank-grade Security</div><p class="feat-desc">PCI DSS Level 1 compliant. 256-bit SSL. Zero card data on our servers.</p></div>
+        <div class="feat-card"><div class="feat-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div><div class="feat-title">All Payment Methods</div><p class="feat-desc">Visa, Mastercard, Amex, Google Pay, Apple Pay — all through PayPal checkout.</p></div>
+        <div class="feat-card"><div class="feat-icon"><i class="ti ti-adjustments" aria-hidden="true"></i></div><div class="feat-title">Custom Amounts</div><p class="feat-desc">Clients enter any amount — perfect for invoices, consulting and project payments.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="section-inner">
+      <div class="section-eyebrow"><i class="ti ti-route" aria-hidden="true"></i> How it works</div>
+      <h2 class="section-title">Pay in 4 simple steps</h2>
+      <p class="section-sub">The entire checkout completes in under 60 seconds.</p>
+      <div class="how-steps">
+        <div class="how-step"><div class="how-num">1</div><div class="how-title">Select Currency</div><p class="how-desc">Choose from 50+ currencies. INR equivalent shown instantly.</p></div>
+        <div class="how-step"><div class="how-num">2</div><div class="how-title">Enter Amount</div><p class="how-desc">Type any custom amount. Quick-select buttons for common amounts.</p></div>
+        <div class="how-step"><div class="how-num">3</div><div class="how-title">Pay via PayPal</div><p class="how-desc">Secure PayPal checkout — card, bank, Google Pay, Apple Pay.</p></div>
+        <div class="how-step"><div class="how-num">4</div><div class="how-title">Instant Confirmation</div><p class="how-desc">Payment settles to your account immediately with transaction ID.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust-section">
+    <div class="section-inner" style="text-align:center">
+      <div class="section-eyebrow" style="justify-content:center"><i class="ti ti-certificate" aria-hidden="true"></i> Security &amp; Compliance</div>
+      <h2 class="section-title">Every transaction protected</h2>
+      <p class="section-sub" style="margin:0 auto 48px">Industry-leading security standards on every payment.</p>
+      <div class="trust-grid">
+        <div class="trust-item"><i class="ti ti-shield-lock" aria-hidden="true"></i><div class="trust-item-title">256-bit SSL</div><p class="trust-item-desc">All data encrypted in transit using TLS 1.3 encryption.</p></div>
+        <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i><div class="trust-item-title">PCI DSS Level 1</div><p class="trust-item-desc">Highest payment card compliance. No card data stored.</p></div>
+        <div class="trust-item"><i class="ti ti-eye-off" aria-hidden="true"></i><div class="trust-item-title">Zero Data Storage</div><p class="trust-item-desc">Cards handled entirely by PayPal — never touch our code.</p></div>
+        <div class="trust-item"><i class="ti ti-brand-paypal" aria-hidden="true"></i><div class="trust-item-title">PayPal Protected</div><p class="trust-item-desc">World's most trusted payment platform with buyer protection.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-name">InterPay<em>Com</em></div>
+          <p>Global payment gateway for businesses accepting international payments from clients worldwide.</p>
+          <div class="footer-badges">
+            <span class="fbadge hi">PCI DSS</span>
+            <span class="fbadge hi">SSL Secured</span>
+            <span class="fbadge">190+ Countries</span>
+            <span class="fbadge">PayPal Powered</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Payment Methods</div>
+          <div class="footer-col">
+            <a href="#">PayPal Wallet</a>
+            <a href="#">Credit / Debit Cards</a>
+            <a href="#">Google Pay</a>
+            <a href="#">Apple Pay</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-col">
+            <a href="mailto:dr.hackxwild@protonmail.com">dr.hackxwild@protonmail.com</a>
+            <a href="#">India</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 InterPayCom · All transactions are secure and encrypted.</p>
+        <div style="display:flex;gap:8px">
+          <span class="fbadge hi">SSL</span>
+          <span class="fbadge hi">PCI DSS</span>
+          <span class="fbadge">PayPal</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
